@@ -20,7 +20,7 @@ public class UtilisateurController {
 	
 	@RequestMapping(value="/listerUtilisateurs",method=RequestMethod.POST)
 	public @ResponseBody String listerUtilisateurs() {		
-		System.out.println("Yo SHAUNT");
+		System.out.println("UtilisateurController: listerUtilisateurs");
 		return "listerUtilisateurs";
 	}
 }
