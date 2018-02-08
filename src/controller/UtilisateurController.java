@@ -11,14 +11,11 @@ import dao.Dao;
 @Controller
 public class UtilisateurController {
 
-	@Autowired
-	Dao dao;
-	
 	public UtilisateurController() {
 		
 	}
 	
-	@RequestMapping(value="/listerUtilisateurs",method=RequestMethod.POST)
+	@RequestMapping(value="/listerUtilisateurs",method=RequestMethod.GET)
 	public @ResponseBody String listerUtilisateurs() {		
 		System.out.println("UtilisateurController: listerUtilisateurs");
 		return "listerUtilisateurs";
