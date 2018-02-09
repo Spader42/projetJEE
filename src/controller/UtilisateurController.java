@@ -14,10 +14,22 @@ public class UtilisateurController {
 	public UtilisateurController() {
 		
 	}
-	
+
 	@RequestMapping(value="/listerUtilisateurs",method=RequestMethod.GET)
 	public @ResponseBody String listerUtilisateurs() {		
 		System.out.println("UtilisateurController: listerUtilisateurs");
 		return "listerUtilisateurs";
+	}
+	
+	@RequestMapping(value="/verifierUtilisateur",method=RequestMethod.GET)
+	public @ResponseBody String verifierUtilisateur() {		
+		System.out.println("UtilisateurController: verifierUtilisateur");
+		return "verifierUtilisateur";
+	}
+	
+	@RequestMapping(value="/ajouterUtilisateur",method=RequestMethod.GET)
+	public @ResponseBody String ajouterUtilisateur() {		
+		System.out.println("UtilisateurController: ajouterUtilisateur");
+		return "ajouterUtilisateur";
 	}
 }

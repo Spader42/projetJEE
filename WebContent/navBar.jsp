@@ -14,20 +14,10 @@
       <a class="navbar-brand" href="#">Météo Bretagne</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-left">
-        <li><a href="#">Prévisions</a></li>
-        <li><a href="#">Link</a></li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#Inscription">S'inscrire</a></li>
         <li><a href="#" onclick="connect()">Se connecter</a></li>
       </ul>
-      <form class="navbar-form">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Rechercher ville">
-        </div>
-        <button type="submit" class="btn btn-default">Rechercher</button>
-      </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
