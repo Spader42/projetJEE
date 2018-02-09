@@ -1,11 +1,14 @@
 package controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bean.Utilisateur;
 import dao.Dao;
 
 @Controller
@@ -16,20 +19,19 @@ public class UtilisateurController {
 	}
 
 	@RequestMapping(value="/listerUtilisateurs",method=RequestMethod.GET)
-	public @ResponseBody String listerUtilisateurs() {		
+	public @ResponseBody List<Utilisateur> listerUtilisateurs() {		
 		System.out.println("UtilisateurController: listerUtilisateurs");
-		return "listerUtilisateurs";
+		return null;
 	}
 	
 	@RequestMapping(value="/verifierUtilisateur",method=RequestMethod.GET)
-	public @ResponseBody String verifierUtilisateur() {		
+	public @ResponseBody boolean verifierUtilisateur() {		
 		System.out.println("UtilisateurController: verifierUtilisateur");
-		return "verifierUtilisateur";
+		return false;
 	}
 	
 	@RequestMapping(value="/ajouterUtilisateur",method=RequestMethod.GET)
-	public @ResponseBody String ajouterUtilisateur() {		
+	public @ResponseBody void ajouterUtilisateur() {		
 		System.out.println("UtilisateurController: ajouterUtilisateur");
-		return "ajouterUtilisateur";
 	}
 }
