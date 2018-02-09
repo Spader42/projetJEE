@@ -9,11 +9,21 @@
 		<link rel="stylesheet" type="text/css" href="Styles/css/Bootstrap/bootstrap.css">
 		<title>Météo Bretagne</title>
 		<script>
+		
+		function Utilisateur(login,password,nom,prenom,email,sel) {
+			this.login = login;
+			this.motDePasse = password;
+			this.nom = nom;
+			this.prenom = prenom;
+			this.email = email;
+			this.sel = sel;
+		}
+		
 			function connect() {
 				swal("Login :", {
 					  content: "input"
 					})
-					.then((value) => {
+					.then((login) => {
 						swal("Password",  {
 							  content: {
 							    element: "input",
@@ -21,6 +31,24 @@
 							      type: "password",
 							    },
 							  },
+							}).then((password) => {
+								var u = new Utilisateur(login, password, null, null, null, null);
+								console.log(u);
+								$.ajax({
+									method : "get",
+									url : "verifierUtilisateur.htm",
+									data : u,
+									dataType : "json",
+									success : function(data) {
+										if (data) {
+											alert("succes");
+										}
+										else {
+											alert("echec");
+										}
+										
+									}
+								});
 							});
 					});
 			}

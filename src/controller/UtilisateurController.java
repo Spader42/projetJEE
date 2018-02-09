@@ -2,8 +2,12 @@ package controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,13 +29,17 @@ public class UtilisateurController {
 	}
 	
 	@RequestMapping(value="/verifierUtilisateur",method=RequestMethod.GET)
-	public @ResponseBody boolean verifierUtilisateur() {		
-		System.out.println("UtilisateurController: verifierUtilisateur");
-		return false;
+	public @ResponseBody boolean verifierUtilisateur(
+			@ModelAttribute @Valid Utilisateur u, BindingResult bres) {
+		if(bres.hasErrors())
+			return false;
+		// return daoUtilisateur.verifierUtilisateur(u);
+		return true;
 	}
 	
 	@RequestMapping(value="/ajouterUtilisateur",method=RequestMethod.GET)
-	public @ResponseBody void ajouterUtilisateur() {		
+	public @ResponseBody void ajouterUtilisateur(
+			@ModelAttribute @Valid Utilisateur u, BindingResult bres) {		
 		System.out.println("UtilisateurController: ajouterUtilisateur");
 	}
 }
