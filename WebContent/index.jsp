@@ -41,10 +41,10 @@
 									dataType : "json",
 									success : function(data) {
 										if (data) {
-											alert("succes");
+											swal("Bienvenue " + login, "","success");
 										}
 										else {
-											alert("echec");
+											swal("Erreur", "Login ou mot de passe incorrect", "error");
 										}
 										
 									}

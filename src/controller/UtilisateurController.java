@@ -18,6 +18,9 @@ import dao.Dao;
 @Controller
 public class UtilisateurController {
 
+	//@Autowired
+	//DaoUtilisateur daoUtilisateur;
+	
 	public UtilisateurController() {
 		
 	}
