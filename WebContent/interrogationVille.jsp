@@ -16,15 +16,21 @@
 var ctx = document.getElementById("myChart").getContext('2d');
 var date = new Date();
 var jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+var labels = [jours[date.getDay() - 1], jours[date.getDay()], 
+		jours[date.getDay() + 1], 
+		jours[date.getDay() + 2], 
+		jours[date.getDay() + 3], 
+		jours[date.getDay() + 4]];
+var temperatures = [12, 19, 3, 5, 2, 3];
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: [jours[date.getDay() - 1], "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: labels,
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Jours de la semaine',
+            data: temperatures,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
+                'rgba(25, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',

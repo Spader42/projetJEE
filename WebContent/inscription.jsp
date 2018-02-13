@@ -24,7 +24,7 @@
 			  <input type="password" class="form-control" id="motDePasse">
 			</div>
 			<div class=" form-group text-center">
-        		<button type="submit" class="btn btn-default btn-primary">S'inscrire</button>
+        		<button onclick="inscription()" class="btn btn-default btn-primary">S'inscrire</button>
        		</div>
 		</form>
 	</div>

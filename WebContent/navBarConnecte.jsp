@@ -14,7 +14,7 @@
       <a class="navbar-brand" href="#">Météo Bretagne</a>
     </div>
     <div class="nav navbar-nav navbar-center">
-        <li><a href="#Compte">NomUtilisateur</a></li>    
+        <li><a href="#Compte">{{pseudoUtilisateur}}</a></li>    
     </div>
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
       <form class="navbar-form">
