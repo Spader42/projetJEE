@@ -10,9 +10,6 @@ import dao.Dao;
 
 @Controller
 public class MeteoController {
-
-	@Autowired
-	Dao dao;
 	
 	public MeteoController() {
 		

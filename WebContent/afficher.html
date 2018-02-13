@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- 
+-->
+ 
+<style>
+table.editable {
+    width: 400px;
+}
+
+table.editable td {
+    border: 1px solid #ccc;
+}
+
+td.icon {
+    border: none;
+}
+</style>
+
+<script type="text/javascript" src="commun_js/jquery/jquery-3.2.1.min.js" ></script>
+
+
+<script type="text/javascript">
+
+var utilisateurs = [];
+
+$(document).ready(function() {
+	//alert("ready");
+	initAfficher();
+});
+
+function initAfficher() {
+		$.ajax({
+			method : "get",
+			url : "listerUtilisateurs.htm",
+			dataType : "json",
+			success : function(data) {
+
+			}
+		});
+	
+}
+
+function creerTableauEditable(id,elems) {
+ 	var s = "";
+	s += "<table class='editable' >";
+	s += "<tr>";
+	s += "<th>Nom</th>";
+	s += "<th>Prénom</th>";
+	s += '</tr>';
+	for (var i=0 ; i<elems.length ; i++) {
+		s += '<tr id="r' + i + '" >';
+		s += '    <td class="nom" >' + elems[i].nom + '</td>';
+		s += '    <td class="prenom">' + elems[i].prenom + '</td>';
+		s += '<td style="border:none;">';
+		s += '<img class="pencil" style="display: none; height: 1em;" src="commun_img/pencil.png" />';
+		s += '<img class="ok" style="display: none; height: 1em;" src="commun_img/ok.png" />';
+		s += '<img class="nok" style="display: none; height: 1em;" src="commun_img/nok.png" />';
+		s += '</td>';
+		s += '</tr>';
+	}
+	s += '</table>';
+	
+	//alert(s);
+	$(id).html(s);
+ 
+}
+
+function gererClics() {
+
+	$('table.editable td').click(function () {
+		// on cherche la cellule cliquée
+	    var cellId = [
+	                  $(this).attr('class'), 
+	                  $(this).parent('tr').attr('id'),
+	                  $(this).html(),
+	                  ];
+	    
+	    if ($(this).prop("contentEditable") == "true") {
+	    	
+ 	    	var ln = parseInt(cellId[1].substring(1));
+ 	    	eval("utilisateurs["+ln+"]."+cellId[0]+"='"+cellId[2]+"'");
+ 	    	//alert(ln);
+ 	    	console.debug('Cell', cellId, 'pas editable');
+	        //$(this).prop("contentEditable", "false");
+	        //$(this).blur(); // curseur OFF
+ 	    	$.ajax({
+	    		method : "get",
+	    		url : "enregistrer.htm",
+	    		data : utilisateurs[ln],
+	    		dataType : "json",
+	    		success : function(data) {
+	    			if (data.res) {
+	    		        $("tr[id='" + cellId[1] + "'] img[class='pencil']").css("display","none");
+	    		        $("tr[id='" + cellId[1] + "'] img[class='nok']").css("display","none");
+	    		        $("tr[id='" + cellId[1] + "'] img[class='ok']").css("display","block");
+	    			
+	    		        // on verrouille la cellule
+	    		        $("tr[id='" + cellId[1] + "'] td[class='" + cellId[0] + "']").prop("contentEditable", "false");
+						// on enlève le curseur
+	    		        $("tr[id='" + cellId[1] + "'] td[class='" + cellId[0] + "']").blur();
+	    			}
+	    			else {
+	    		        $("tr[id='" + cellId[1] + "'] img[class='pencil']").css("display","none");
+	    		        $("tr[id='" + cellId[1] + "'] img[class='nok']").css("display","block");	    				
+	    		        $("tr[id='" + cellId[1] + "'] img[class='ok']").css("display","none");	    				
+	    			}
+	    		}
+	    	});
+  	    } 
+	    else {        
+	        console.debug('Cell', cellId, 'editable');
+	        $(this).prop("contentEditable", "true");
+	        $(this).focus(); // curseur ON
+	        
+	        $("tr[id='" + cellId[1] + "'] img[class='pencil']").css("display","block");
+	        $("tr[id='" + cellId[1] + "'] img[class='nok']").css("display","none");
+	        $("tr[id='" + cellId[1] + "'] img[class='ok']").css("display","none");
+	    }
+	});
+
+}
+
+
+</script>
+
+<h3>Liste des utilisateurs</h3>
+
+<ul>
+<li>Cliquer une première fois sur la cellule pour la rendre éditable</li>
+<li>Modifier la cellule</li>
+<li>Cliquer une seconde fois sur la cellule pour enregistrer la modification et verrouiller la cellule</li>
+</ul>
+
+<div id="tableau"></div>
+
+
+
