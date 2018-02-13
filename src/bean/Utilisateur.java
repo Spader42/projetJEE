@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import dao.Dao;
 
@@ -16,10 +19,25 @@ public class Utilisateur {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id = null;
+
+
+	@NotEmpty(message="Le nom ne peut pas être vide")
+	private String nom = null;
+
+	@NotEmpty(message="Le prénom ne peut pas être vide")
+	private String prenom = null;
 	
+	@Size(min = 3, max = 15, message = "Le pseudo doit contenir entre 3 et 15 caractères")
+	@NotEmpty(message="Le pseudo ne peut pas être vide")
 	private String pseudo = null;
+
+	@Size(min = 5, max = 15, message = "Le mot de passe doit contenir entre 5 et 15 caractères")
+	@NotEmpty(message="Le password ne peut pas être vide")
 	private String password = null;
+
+	@NotEmpty(message="Le mail ne peut pas être vide")
 	private String mail = null;
+	
 	private String sel = null;
 	
 	public Utilisateur() {

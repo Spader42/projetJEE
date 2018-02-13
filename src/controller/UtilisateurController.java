@@ -28,14 +28,14 @@ public class UtilisateurController {
 	}
 
 	@RequestMapping(value="/listerUtilisateurs",method=RequestMethod.GET)
-	public @ResponseBody List<UtilisateurInscription> listerUtilisateurs() {		
+	public @ResponseBody List<Utilisateur> listerUtilisateurs() {		
 		System.out.println("UtilisateurController: listerUtilisateurs");
 		return null;
 	}
 
 	@RequestMapping(value="/verifierUtilisateur",method=RequestMethod.GET)
 	public @ResponseBody boolean verifierUtilisateur(
-			@ModelAttribute @Valid Utilisateur u, BindingResult bres) {
+			String login, String motDePasse, BindingResult bres) {
 		if(bres.hasErrors())
 			return false;
 		// return daoUtilisateur.verifierUtilisateur(u);
@@ -44,7 +44,7 @@ public class UtilisateurController {
 	
 	@RequestMapping(value="/ajouterUtilisateur",method=RequestMethod.GET)
 	public @ResponseBody Resultat ajouterUtilisateur(
-			@ModelAttribute @Valid UtilisateurInscription u, BindingResult bres) {
+			@ModelAttribute @Valid Utilisateur u, BindingResult bres) {
 		Resultat res = new Resultat();
 		
 		if(bres.hasErrors()) {
